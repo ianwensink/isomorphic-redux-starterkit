@@ -1,0 +1,63 @@
+{
+  "name": "isomorphic-redux-starterkit",
+  "version": "1.0.0",
+  "description": "Redux Starter Kit atm still based off of Cory House's",
+  "scripts": {
+    "start": "npm-run-all --parallel test:watch dev:serve",
+    "dev:serve": "NODE_ENVIRONMENT=development babel-node ./src/server.js",
+    "prod:build": "NODE_ENVIRONMENT=production webpack --config ./config/webpack.config.js",
+    "test:run": "mocha --reporter progress tools/testSetup.js \"test/**/*.test.js\"",
+    "test:watch": "npm run test:run -- --watch"
+  },
+  "author": "Jori Regter",
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "6.8.0",
+    "react": "15.0.2",
+    "react-dom": "15.0.2",
+    "react-redux": "4.4.5",
+    "react-router": "2.4.0",
+    "react-router-redux": "4.0.4",
+    "redux": "3.5.2",
+    "redux-thunk": "2.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.8.0",
+    "babel-core": "6.8.0",
+    "babel-loader": "6.2.4",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-register": "6.8.0",
+    "compression": "1.6.1",
+    "copy-webpack-plugin": "^3.0.0",
+    "css-loader": "^0.23.1",
+    "enzyme": "2.2.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "1.6.1",
+    "eslint-plugin-react": "5.0.1",
+    "expect": "1.19.0",
+    "express": "4.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jsdom": "8.5.0",
+    "mocha": "2.4.5",
+    "nock": "8.0.0",
+    "node-sass": "^3.7.0",
+    "npm-run-all": "1.8.0",
+    "open": "0.0.5",
+    "pug": "^2.0.0-alpha8",
+    "react-addons-test-utils": "15.0.2",
+    "react-hot-loader": "^1.3.0",
+    "redux-immutable-state-invariant": "1.2.3",
+    "redux-mock-store": "1.0.2",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "1.13.0",
+    "webpack-dev-middleware": "1.6.1",
+    "webpack-hot-middleware": "2.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdreg95/isomorphic-redux-starterkit"
+  }
+}
