@@ -1,10 +1,9 @@
 require('babel-register')();
 
-const webpack =  require('webpack');
-const ExtractTextPlugin =  require('extract-text-webpack-plugin');
-const CopyWebpackPlugin =  require('copy-webpack-plugin');
-
-const base = require('./webpack.config.base');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import base from './webpack.config.base';
 const config = Object.assign({}, base);
 
 if (process.env.NODE_ENVIRONMENT !== 'production') {
@@ -47,4 +46,4 @@ config.plugins.push(
   new ExtractTextPlugin('style.css')
 )
 
-module.exports = config;
+export default config;

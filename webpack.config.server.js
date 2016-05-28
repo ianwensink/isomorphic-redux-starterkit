@@ -1,8 +1,8 @@
 require('babel-register')();
 
-const fs = require('fs');
-const webpack =  require('webpack');
-const base = require('./webpack.config.base');
+import fs from 'fs';
+import webpack from 'webpack';
+import base from './webpack.config.base';
 const config = Object.assign({}, base);
 
 if (process.env.NODE_ENVIRONMENT !== 'production') {
@@ -41,4 +41,4 @@ config.externals = fs.readdirSync(`${__dirname}/node_modules`)
   }, {}
 )
 
-module.exports = config;
+export default config;
