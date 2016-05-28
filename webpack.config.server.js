@@ -1,14 +1,14 @@
 require('babel-register')();
 
-import fs from 'fs';
-import webpack from 'webpack';
-import base from './webpack.config.base';
-const config = Object.assign({}, base);
+const fs = require('fs');
+const webpack = require('webpack');
+const base = require('./webpack.config.base');
+const serverConfig = Object.assign({}, base);
 
 if (process.env.NODE_ENVIRONMENT !== 'production') {
 }
 else {
-  config.plugins.push(
+  serverConfig.plugins.push(
     new webpack.DefinePlugin({
     'process.env':{
       'NODE_ENV': JSON.stringify('production')
@@ -24,16 +24,16 @@ else {
   );
 }
 
-config.entry.push('./server');
-config.target = 'node';
-config.output.filename = 'server.bundle.js';
+serverConfig.entry.push('./server');
+serverConfig.target = 'node';
+serverConfig.output.filename = 'server.bundle.js';
 
-config.node = {
+serverConfig.node = {
   __filename: false,
   __dirname: false
 };
 
-config.externals = fs.readdirSync(`${__dirname}/node_modules`)
+serverConfig.externals = fs.readdirSync(`${__dirname}/node_modules`)
   .concat(['react-dom/server'])
   .reduce((ext, mod) => {
     ext[mod] = `commonjs ${mod}`
@@ -41,4 +41,4 @@ config.externals = fs.readdirSync(`${__dirname}/node_modules`)
   }, {}
 )
 
-export default config;
+module.exports = serverConfig;

@@ -1,20 +1,20 @@
 require('babel-register')();
 
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import base from './webpack.config.base';
-const config = Object.assign({}, base);
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const base = require('./webpack.config.base');
+const clientConfig = Object.assign({}, base);
 
 if (process.env.NODE_ENVIRONMENT !== 'production') {
-  config.entry.push('webpack-hot-middleware/client?reload=true');
-  config.plugins.push(
+  clientConfig.entry.push('webpack-hot-middleware/client?reload=true');
+  clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   )
 }
 else {
-  config.plugins.push(
+  clientConfig.plugins.push(
     new webpack.DefinePlugin({
     'process.env':{
       'NODE_ENV': JSON.stringify('production')
@@ -30,20 +30,21 @@ else {
   );
 }
 
-config.entry.push('./app');
-config.target = 'web';
-config.output.publicPath = '/';
-config.output.filename = 'bundle.js';
-config.module.loaders.push({
+clientConfig.entry.push('./app');
+clientConfig.target = 'web';
+clientConfig.output.publicPath = '/';
+clientConfig.output.filename = 'bundle.js';
+clientConfig.module.loaders.push({
   test: /\.scss$/,
   loader: ExtractTextPlugin.extract(['css', 'sass'])
 });
 
-config.plugins.push(
+clientConfig.plugins.push(
   new CopyWebpackPlugin([{
     from: 'index.jade'
   }]),
   new ExtractTextPlugin('style.css')
-)
+);
 
-export default config;
+
+module.exports = clientConfig;
