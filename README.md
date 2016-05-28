@@ -1,4 +1,4 @@
-# Another Redux Starter-kit
+# Another Redux Starterkit
 
 I wrote this starter kit based on the Pluralsight Redux starterkit by Cory House.
 I customized a lot, deleting a lot of dependencies, but also customizing a lot of
